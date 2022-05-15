@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.andriod.remembering.databinding.FragmentListBinding
@@ -30,8 +31,9 @@ class ListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.recyclerView.layoutManager = LinearLayoutManager(context)
-        adapter = MyAdapter()
+        adapter = MyAdapter { Toast.makeText(context, it.value, Toast.LENGTH_SHORT).show() }
         binding.recyclerView.adapter = adapter
-        adapter.entities = listOf(MyEntity("1", "one"), MyEntity("2", "two"), MyEntity("3", "three"))
+        adapter.entities =
+            listOf(MyEntity("1", "one"), MyEntity("2", "two"), MyEntity("3", "three"))
     }
 }
